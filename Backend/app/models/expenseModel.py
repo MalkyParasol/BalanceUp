@@ -35,6 +35,6 @@ class ExpenseCategory(str, Enum):
 class Expense(BaseModel):
     amount: float
     description: str
-    date: date
-    user_id: int
+    date: str
+    user_id: str
     category: Union[ExpenseCategory, str]
