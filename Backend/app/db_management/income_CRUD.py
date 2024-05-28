@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from bson import ObjectId
 
 from BalanceUp.Backend.app.models.incomeModel import Income
@@ -23,3 +25,39 @@ def update_income(income_id: ObjectId, income: Income):
 
 def delete_income(income_id: ObjectId):
     incomes_collection.delete_one({"_id": income_id})
+
+
+def get_incomes_by_user_id(user_id: str):
+    incomes_cursor = incomes_collection.find({"user_id": user_id})
+    user_incomes = [Income(**income) for income in incomes_cursor]
+    return user_incomes
+
+
+def get_monthly_income(user_id: str):
+    allIncomes = get_incomes_by_user_id(user_id)
+    monthly_incomes = [0] * 31
+    for income in allIncomes:
+        date = datetime.strptime(income.date, '%Y-%m-%d').date()
+        if date.year == date.today().year and date.month == date.today().month:
+            monthly_incomes[int(date.day) - 1] += income.amount
+    return monthly_incomes
+
+
+def get_yearly_income(user_id: str):
+    allIncomes = get_incomes_by_user_id(user_id)
+    yearly_incomes = [0] * 12
+    for income in allIncomes:
+        date = datetime.strptime(income.date, '%Y-%m-%d').date()
+        if date.year == date.today().year:
+            yearly_incomes[int(date.month) - 1] += income.amount
+    return yearly_incomes
+
+
+def get_daily_income(user_id: str, day: int):
+    allIncomes = get_incomes_by_user_id(user_id)
+    sum = 0
+    for income in allIncomes:
+        date = datetime.strptime(income.date, '%Y-%m-%d').date()
+        if date.year == date.today().year and date.month == date.today().month and date.day == day:
+            sum += income.amount
+    return sum

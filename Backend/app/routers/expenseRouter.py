@@ -4,7 +4,7 @@ from bson import ObjectId
 from fastapi import FastAPI, Depends, APIRouter, HTTPException
 
 from BalanceUp.Backend.app.db_management.expense_CRUD import create_expense, get_expense_by_id, update_expense, \
-    delete_expense
+    delete_expense, get_expenses_by_user_id
 from BalanceUp.Backend.app.models.expenseModel import Expense
 
 expenseRouter = APIRouter()
@@ -27,6 +27,7 @@ def createExpense(user_id: str, expense: Expense):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"cannot crater expense{str(e)}")
 
+
 @expenseRouter.put("/{expense_id}")
 def updateExpense(expense_id: str, expense: Expense):
     try:
@@ -42,6 +43,7 @@ def updateExpense(expense_id: str, expense: Expense):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"failed to update this expense{e}")
 
+
 @expenseRouter.delete("/{expense_id}")
 def deleteExpense(expense_id: str):
     try:
@@ -53,3 +55,20 @@ def deleteExpense(expense_id: str):
         return {"message": "expense deleted successfully"}
     except Exception as e:
         raise HTTPException(status_code=400, detail="failed to delete this expense")
+
+
+@expenseRouter.get("/{user_id}")
+def getExpenseByUserId(user_id: str):
+    try:
+        return get_expenses_by_user_id(user_id)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="failed to load this expenses")
+
+
+@expenseRouter.get("/{expense_id}")
+def getIncomeById(expense_id: str):
+    try:
+        expenseId = ObjectId(expense_id)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid expense id")
+    return get_expense_by_id(expenseId)

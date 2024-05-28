@@ -2,7 +2,7 @@ from bson import ObjectId
 from fastapi import FastAPI, Depends, APIRouter, HTTPException
 from datetime import date
 from BalanceUp.Backend.app.db_management.income_CRUD import create_income, update_income, get_income_by_id, \
-    delete_income
+    delete_income, get_incomes_by_user_id
 from BalanceUp.Backend.app.models.incomeModel import Income
 
 incomeRouter = APIRouter()
@@ -62,3 +62,11 @@ def getIncomeById(income_id: str):
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid income id")
     return get_income_by_id(incomeId)
+
+
+@incomeRouter.get("/{user_id}")
+def getIncomesByUserId(user_id: str):
+    try:
+        return get_incomes_by_user_id(user_id)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="failed to load this incomes")
