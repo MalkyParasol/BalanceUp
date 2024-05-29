@@ -7,5 +7,5 @@ class User(BaseModel):
     password: str
     email: Optional[str]
     phone: Optional[str]
-    current_balance: float
+
 

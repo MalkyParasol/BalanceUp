@@ -42,16 +42,18 @@ def getMonthlyVisual(user_id: str):
     plt.legend()
     return plt.show()
 
+
 @visualRouter.get("day/{user_id}/{day}")
-def getMonthlyVisual(user_id: str,day:int):
-    incomes = get_daily_income(user_id,day)
-    expense = get_daily_expense(user_id,day)
+def getMonthlyVisual(user_id: str, day: int):
+    incomes = get_daily_income(user_id, day)
+    expense = get_daily_expense(user_id, day)
     myLabels = ["incomes", "expenses"]
-    myValues = [incomes,expense]
+    myValues = [incomes, expense]
     myExplode = [0.2, 0]
     plt.pie(myValues, labels=myLabels, explode=myExplode, shadow=True)
     plt.legend()
     return plt.show()
+
 
 @visualRouter.get("year/{user_id}")
 def getMonthlyVisual(user_id: str):
@@ -75,8 +77,5 @@ def getMonthlyVisual(user_id: str):
 
     plt.tight_layout()
 
-
     return plt.show()
 
-# @visualRouter.get("month/{user_id")
-# def getMonthlyVisual(user_id: str):

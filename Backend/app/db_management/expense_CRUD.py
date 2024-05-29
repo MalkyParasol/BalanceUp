@@ -36,12 +36,13 @@ def get_expenses_by_user_id(user_id: str):
 
 def get_monthly_expense(user_id: str):
     allExpense = get_expenses_by_user_id(user_id)
-    monthly_expenses = [0]*31
+    monthly_expenses = [0] * 31
     for expense in allExpense:
         date = datetime.strptime(expense.date, '%Y-%m-%d').date()
         if date.year == date.today().year and date.month == date.today().month:
-            monthly_expenses[int(date.day)-1] += expense.amount
+            monthly_expenses[int(date.day) - 1] += expense.amount
     return monthly_expenses
+
 
 def get_yearly_expense(user_id: str):
     allExpenses = get_expenses_by_user_id(user_id)
@@ -51,6 +52,7 @@ def get_yearly_expense(user_id: str):
         if date.year == date.today().year:
             yearly_expenses[int(date.month) - 1] += expense.amount
     return yearly_expenses
+
 
 def get_daily_expense(user_id: str, day: int):
     allExpenses = get_expenses_by_user_id(user_id)

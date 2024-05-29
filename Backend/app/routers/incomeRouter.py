@@ -4,11 +4,13 @@ from datetime import date
 from BalanceUp.Backend.app.db_management.income_CRUD import create_income, update_income, get_income_by_id, \
     delete_income, get_incomes_by_user_id
 from BalanceUp.Backend.app.models.incomeModel import Income
+from BalanceUp.Backend.utils.logDecorator import log_to_file
 
 incomeRouter = APIRouter()
 
 
 @incomeRouter.post("/{user_id}")
+@log_to_file()
 def addIncome(user_id: str, income: Income):
     try:
         user_id = ObjectId(user_id)
@@ -27,6 +29,7 @@ def addIncome(user_id: str, income: Income):
 
 
 @incomeRouter.put("/{income_id}")
+@log_to_file()
 def updateIncome(income_id: str, income: Income):
     try:
         incomeId = ObjectId(income_id)
@@ -43,6 +46,7 @@ def updateIncome(income_id: str, income: Income):
 
 
 @incomeRouter.delete("/{income_id}")
+@log_to_file()
 def deleteIncome(income_id: str):
     try:
         incomeId = ObjectId(income_id)
@@ -56,6 +60,7 @@ def deleteIncome(income_id: str):
 
 
 @incomeRouter.get("/{income_id}")
+@log_to_file()
 def getIncomeById(income_id: str):
     try:
         incomeId = ObjectId(income_id)
@@ -65,6 +70,7 @@ def getIncomeById(income_id: str):
 
 
 @incomeRouter.get("/{user_id}")
+@log_to_file()
 def getIncomesByUserId(user_id: str):
     try:
         return get_incomes_by_user_id(user_id)

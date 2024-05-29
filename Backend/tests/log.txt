@@ -1,0 +1,10 @@
+2024-05-29T22:36:39.673175 - CREATEEXPENSE - createExpense - Succeeded
+2024-05-29T22:40:33.114912 - CREATEEXPENSE - createExpense - Succeeded
+2024-05-29T22:40:48.028094 - UPDATEEXPENSE - updateExpense - Failed with status code 400
+2024-05-29T22:41:29.883166 - UPDATEEXPENSE - updateExpense - Failed with status code 400
+2024-05-29T22:43:15.223330 - UPDATEEXPENSE - updateExpense - Failed with status code 400
+2024-05-29T22:44:44.935021 - UPDATEEXPENSE - updateExpense - Succeeded
+2024-05-29T22:44:59.889505 - UPDATEEXPENSE - updateExpense - Succeeded
+2024-05-29T22:49:57.137066 - DELETEEXPENSE - deleteExpense - Succeeded
+2024-05-29T23:03:23.947833 - GETEXPENSEBYUSERID - getExpenseByUserId - Succeeded
+2024-05-29T23:04:06.535172 - GETEXPENSEBYUSERID - getExpenseByUserId - Succeeded

@@ -4,10 +4,13 @@ from BalanceUp.Backend.app.db_management.user_CRUD import create_user, get_user_
 from BalanceUp.Backend.app.models.userModel import User
 from bson import ObjectId
 
+from BalanceUp.Backend.utils.logDecorator import log_to_file
+
 userRouter = APIRouter()
 
 
 @userRouter.get("/{id}")
+@log_to_file()
 def getUserById(_id: str):
     try:
         user_id = ObjectId(_id)
@@ -23,6 +26,7 @@ def getUserById(_id: str):
 
 
 @userRouter.post("/signUp")
+@log_to_file()
 def signUp(user: User):
     inserted_id = create_user(user)
     if inserted_id:
@@ -32,6 +36,7 @@ def signUp(user: User):
 
 
 @userRouter.post("/signIn")
+@log_to_file()
 def signIn(name: str, password: str):
     user_id = get_user_by_name_password(name, password)
     if user_id:
@@ -41,6 +46,7 @@ def signIn(name: str, password: str):
 
 
 @userRouter.put("/{id}")
+@log_to_file()
 def setProfile(Id: str, user: User):
     try:
         user_id = ObjectId(Id)

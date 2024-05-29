@@ -6,11 +6,13 @@ from fastapi import FastAPI, Depends, APIRouter, HTTPException
 from BalanceUp.Backend.app.db_management.expense_CRUD import create_expense, get_expense_by_id, update_expense, \
     delete_expense, get_expenses_by_user_id
 from BalanceUp.Backend.app.models.expenseModel import Expense
+from BalanceUp.Backend.utils.logDecorator import log_to_file
 
 expenseRouter = APIRouter()
 
 
 @expenseRouter.post("/{user_id}")
+@log_to_file()
 def createExpense(user_id: str, expense: Expense):
     try:
         user_id = ObjectId(user_id)
@@ -29,6 +31,7 @@ def createExpense(user_id: str, expense: Expense):
 
 
 @expenseRouter.put("/{expense_id}")
+@log_to_file()
 def updateExpense(expense_id: str, expense: Expense):
     try:
         expenseId = ObjectId(expense_id)
@@ -45,6 +48,7 @@ def updateExpense(expense_id: str, expense: Expense):
 
 
 @expenseRouter.delete("/{expense_id}")
+@log_to_file()
 def deleteExpense(expense_id: str):
     try:
         expenseId = ObjectId(expense_id)
@@ -58,6 +62,7 @@ def deleteExpense(expense_id: str):
 
 
 @expenseRouter.get("/{user_id}")
+@log_to_file()
 def getExpenseByUserId(user_id: str):
     try:
         return get_expenses_by_user_id(user_id)
@@ -66,7 +71,8 @@ def getExpenseByUserId(user_id: str):
 
 
 @expenseRouter.get("/{expense_id}")
-def getIncomeById(expense_id: str):
+@log_to_file()
+def getExpenseById(expense_id: str):
     try:
         expenseId = ObjectId(expense_id)
     except Exception:
