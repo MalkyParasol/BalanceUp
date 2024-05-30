@@ -5,11 +5,11 @@
 
  * [Features](#Features)
 
- * [Technologies Used](#TechnologiesUsed)
+ * [Technologies Used](#Technologies-Used)
 
- * [File Tree](#filetree)
+ * [File Tree](#file-tree)
 
- * [Getting Started](#GettingStarted)
+ * [Getting Started](#Getting-Started)
 
  * [Usage](#Usage)
 
@@ -25,7 +25,7 @@
 
 **Data Storage:** All user data, including income and expense records, is stored in a MongoDB database.
 
-## Technologies Used
+## Technologies-Used
 
 **Python:** Backend development language.
 
@@ -35,7 +35,7 @@
 
 **Matplotlib:** Library for creating static, animated, and interactive visualizations in Python.
 
-## File tree:
+## File-tree:
 
 ![fileTree](./Backend/assets/file%20tree.png)
 
@@ -91,7 +91,7 @@ Inside Backend, there are three main directories:
 
 **logDecorator.py:** Module for logging decorators.
 
-## Getting Started
+## Getting-Started
 
 * Clone the Repository: git clone
   ```https://github.com/MalkyParasol/BalanceUp```
