@@ -1,3 +1,9 @@
+"""
+test_incomeRouter.py
+
+This module contains unit tests for the income router endpoints.
+
+"""
 from fastapi import HTTPException
 
 from BalanceUp.Backend.app.models.incomeModel import Income
@@ -6,6 +12,12 @@ from BalanceUp.Backend.app.routers.incomeRouter import addIncome, updateIncome, 
 
 
 def testAddIncome():
+    """
+        Test case for the addIncome endpoint.
+
+        It tests whether a new income can be successfully added.
+
+    """
     income = Income(amount=50, source="gift", description="gift for birthday", date='29-05-2024',
                     user_id="664ef396319b8c6690e4f211")
     result = addIncome("664ef396319b8c6690e4f211", income)
@@ -13,6 +25,12 @@ def testAddIncome():
 
 
 def testUpdateIncome():
+    """
+       Test case for the updateIncome endpoint.
+
+       It tests whether an existing income can be successfully updated.
+
+    """
     income = Income(amount=50, source="gift", description="gift for birthday", date='2024-05-29',
                     user_id="664ef396319b8c6690e4f211")
     result = updateIncome("665775f9c3fc8a2f270195ce", income)
@@ -20,6 +38,12 @@ def testUpdateIncome():
 
 
 def testGetIncomeById():
+    """
+       Test case for the getIncomeById endpoint.
+
+       It tests whether an income can be successfully retrieved by its ID.
+
+    """
     income = Income(amount=50, source="gift", description="gift for birthday", date='2024-05-29',
                     user_id="664ef396319b8c6690e4f211")
     result = getIncomeById("665775f9c3fc8a2f270195ce")
@@ -27,7 +51,12 @@ def testGetIncomeById():
 
 
 def testGetIncomesByUserId():
+    """
+       Test case for the getIncomesByUserId endpoint.
 
+       It tests whether incomes for a specific user can be successfully retrieved.
+
+    """
     user_id = "664ef396319b8c6690e4f211"
     try:
         result = getIncomesByUserId(user_id)

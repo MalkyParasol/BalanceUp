@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from enum import Enum
-from datetime import date
 from typing import Union
 
 
@@ -33,6 +32,16 @@ class ExpenseCategory(str, Enum):
 
 
 class Expense(BaseModel):
+    """
+        Model representing an expense.
+
+        Attributes:
+            amount (float): The amount of the expense.
+            description (str): Description of the expense.
+            date (str): Date of the expense in the format 'YYYY-MM-DD'.
+            user_id (str): The unique identifier of the user associated with the expense.
+            category (Union[ExpenseCategory, str]): The category of the expense, chosen from ExpenseCategory enum.
+        """
     amount: float
     description: str
     date: str

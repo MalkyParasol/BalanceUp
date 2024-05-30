@@ -1,3 +1,9 @@
+"""
+expenseRouter.py
+
+This module defines API routes related to expenses, including creating, updating, deleting, and retrieving expenses.
+
+"""
 from datetime import date
 
 from bson import ObjectId
@@ -14,6 +20,16 @@ expenseRouter = APIRouter()
 @expenseRouter.post("/{user_id}")
 @log_to_file()
 def createExpense(user_id: str, expense: Expense):
+    """
+        Create a new expense.
+
+        Args:
+            user_id (str): The unique identifier of the user.
+            expense (Expense): An Expense object representing the details of the expense to be created.
+
+        Returns:
+            dict: A dictionary containing the created expense ID if successful, or an error message if failed.
+        """
     try:
         user_id = ObjectId(user_id)
     except Exception:
@@ -33,6 +49,16 @@ def createExpense(user_id: str, expense: Expense):
 @expenseRouter.put("/{expense_id}")
 @log_to_file()
 def updateExpense(expense_id: str, expense: Expense):
+    """
+       Update an existing expense.
+
+       Args:
+           expense_id (str): The unique identifier of the expense.
+           expense (Expense): An Expense object representing the updated details of the expense.
+
+       Returns:
+           dict: A dictionary containing a success message if the update was successful.
+       """
     try:
         expenseId = ObjectId(expense_id)
     except Exception:
@@ -50,6 +76,15 @@ def updateExpense(expense_id: str, expense: Expense):
 @expenseRouter.delete("/{expense_id}")
 @log_to_file()
 def deleteExpense(expense_id: str):
+    """
+        Delete an expense.
+
+        Args:
+            expense_id (str): The unique identifier of the expense to be deleted.
+
+        Returns:
+            dict: A dictionary containing a success message if the deletion was successful.
+        """
     try:
         expenseId = ObjectId(expense_id)
     except Exception:
@@ -64,6 +99,15 @@ def deleteExpense(expense_id: str):
 @expenseRouter.get("/{user_id}")
 @log_to_file()
 def getExpenseByUserId(user_id: str):
+    """
+        Retrieve expenses by user ID.
+
+        Args:
+            user_id (str): The unique identifier of the user whose expenses are to be retrieved.
+
+        Returns:
+            list: A list of expenses associated with the provided user ID.
+    """
     try:
         return get_expenses_by_user_id(user_id)
     except Exception as e:
@@ -73,6 +117,15 @@ def getExpenseByUserId(user_id: str):
 @expenseRouter.get("/{expense_id}")
 @log_to_file()
 def getExpenseById(expense_id: str):
+    """
+        Retrieve an expense by its ID.
+
+        Args:
+            expense_id (str): The unique identifier of the expense to be retrieved.
+
+        Returns:
+            Expense: An Expense object representing the retrieved expense.
+    """
     try:
         expenseId = ObjectId(expense_id)
     except Exception:

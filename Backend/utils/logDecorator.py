@@ -1,9 +1,21 @@
+"""
+logDecorator.py
+
+This module defines a decorator function for logging API requests to a file.
+
+"""
 from functools import wraps
 from fastapi import HTTPException
 from datetime import datetime
 
 
 def log_to_file():
+    """
+        Decorator function for logging API requests to a file.
+
+        Returns:
+            function: Decorator function that logs API requests.
+    """
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):

@@ -1,3 +1,9 @@
+"""
+visualRouter.py
+
+This module defines API routes related to visualization of financial data, including plotting monthly, yearly, and daily income and expenses.
+
+"""
 from fastapi import FastAPI, Depends, APIRouter, HTTPException
 import matplotlib.pyplot as plt
 import numpy as np
@@ -7,12 +13,17 @@ from BalanceUp.Backend.app.db_management.income_CRUD import get_monthly_income, 
 visualRouter = APIRouter()
 
 
-# @visualRouter.get("year/{user_id}")
-# def geyYearlyVisual(user_id: str):
-
-
 @visualRouter.get("month/{user_id}")
 def getMonthlyVisual(user_id: str):
+    """
+      Generate a plot of monthly incomes and expenses for a specific user.
+
+      Args:
+          user_id (str): The unique identifier of the user.
+
+      Returns:
+          str: A plot showing monthly incomes and expenses.
+    """
     incomes = get_monthly_income(user_id)
     expense = get_monthly_expense(user_id)
     days = range(0, 31)
@@ -28,7 +39,16 @@ def getMonthlyVisual(user_id: str):
 
 
 @visualRouter.get("year/line/{user_id}")
-def getMonthlyVisual(user_id: str):
+def getYearlyVisual(user_id: str):
+    """
+       Generate a line plot of yearly incomes and expenses for a specific user.
+
+       Args:
+           user_id (str): The unique identifier of the user.
+
+       Returns:
+           str: A plot showing yearly incomes and expenses.
+    """
     incomes = get_yearly_income(user_id)
     expense = get_yearly_expense(user_id)
     month = range(0, 12)
@@ -44,7 +64,17 @@ def getMonthlyVisual(user_id: str):
 
 
 @visualRouter.get("day/{user_id}/{day}")
-def getMonthlyVisual(user_id: str, day: int):
+def getDailyVisual(user_id: str, day: int):
+    """
+        Generate a pie chart of daily incomes and expenses for a specific user on a given day.
+
+        Args:
+            user_id (str): The unique identifier of the user.
+            day (int): The day for which to visualize income and expenses.
+
+        Returns:
+            str: A pie chart showing daily incomes and expenses.
+    """
     incomes = get_daily_income(user_id, day)
     expense = get_daily_expense(user_id, day)
     myLabels = ["incomes", "expenses"]
@@ -56,7 +86,16 @@ def getMonthlyVisual(user_id: str, day: int):
 
 
 @visualRouter.get("year/{user_id}")
-def getMonthlyVisual(user_id: str):
+def getYearlyVisual(user_id: str):
+    """
+       Generate a bar chart of yearly incomes and expenses for a specific user.
+
+       Args:
+           user_id (str): The unique identifier of the user.
+
+       Returns:
+           str: A bar chart showing yearly incomes and expenses.
+    """
     incomes = get_yearly_income(user_id)
     expense = get_yearly_expense(user_id)
     months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
@@ -78,4 +117,3 @@ def getMonthlyVisual(user_id: str):
     plt.tight_layout()
 
     return plt.show()
-
