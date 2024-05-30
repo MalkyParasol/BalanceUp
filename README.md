@@ -41,55 +41,55 @@
 
 #### In this structure:
 
-The *BalanceUp* folder is the root directory.
+The **BalanceUp** folder is the root directory.
 
-Inside BalanceUp, there's a *Backend* folder.
+Inside BalanceUp, there's a **Backend** folder.
 
 Inside Backend, there are three main directories:
 
-*app*: Contains the application logic.
+**app:** Contains the application logic.
 
-*db_management*: Contains modules for database management.
+**db_management:** Contains modules for database management.
 
-*config.py*: Configuration settings for the database.
+**config.py:** Configuration settings for the database.
 
-*connectDB.py:* Module for connecting to the database.
+**connectDB.py:** Module for connecting to the database.
 
-*expense_CRUD.py:* Module for expense CRUD operations.
+**expense_CRUD.py:** Module for expense CRUD operations.
 
-*income_CRUD.py:* Module for income CRUD operations.
+**income_CRUD.py:** Module for income CRUD operations.
 
-*user_crud.py:* Module for user CRUD operations.
+**user_crud.py:** Module for user CRUD operations.
 
-*models*: Contains the data models.
+**models:** Contains the data models.
 
-*expenseModel.py*: Model for expense data.
+**expenseModel.py**: Model for expense data.
 
-*incomeModel.py:* Model for income data.
+**incomeModel.py:** Model for income data.
 
-*userModel.py:* Model for user data.
+**userModel.py:** Model for user data.
 
-*routers:* Contains the API routers.
+**routers:** Contains the API routers.
 
-*expenseRouter.py:* Router for expense-related endpoints.
+**expenseRouter.py:** Router for expense-related endpoints.
 
-*incomeRouter.py:* Router for income-related endpoints.
+**incomeRouter.py:** Router for income-related endpoints.
 
-*userRouter.py:* Router for user-related endpoints.
+**userRouter.py:** Router for user-related endpoints.
 
-*visualRouter.py:* Router for visualization-related endpoints.
+**visualRouter.py:** Router for visualization-related endpoints.
 
-*tests:* Contains test files for the application.
+**tests:** Contains test files for the application.
 
-*test_expenseRouter.py:* Tests for the expense router.
+**test_expenseRouter.py:** Tests for the expense router.
 
-*test_incomeRouter.py:* Tests for the income router.
+**test_incomeRouter.py:** Tests for the income router.
 
-*test_userRouter.py:* Tests for the user router.
+**test_userRouter.py:** Tests for the user router.
 
-*utils:* Contains utility modules.
+**utils:** Contains utility modules.
 
-*logDecorator.py:* Module for logging decorators.
+**logDecorator.py:** Module for logging decorators.
 
 ## Getting Started
 
